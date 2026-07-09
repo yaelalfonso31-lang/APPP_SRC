@@ -1,11 +1,18 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
-import { FormularioVisitaService } from '../servicios/formulario-visita.service';
-
+import { ReactiveFormsModule } from '@angular/forms';
+// 2. Importar CommonModule para que funcionen los *ngFor y *ngIf del HTML
+import { CommonModule } from '@angular/common';
+import { FormularioVisitaService } from '../formulario-visita';
 @Component({
   selector: 'app-paso-solicitud',
-  templateUrl: './paso-solicitud.component.html',
-  styleUrls: ['./paso-solicitud.component.css']
+  templateUrl: './paso-solicitud.html',
+  styleUrls: ['./paso-solicitud.css'],
+  imports: [
+    // 3. Declarar las importaciones aquí
+    ReactiveFormsModule,
+    CommonModule
+  ],
 })
 export class PasoSolicitudComponent implements OnChanges {
   @Input() form!: FormGroup;

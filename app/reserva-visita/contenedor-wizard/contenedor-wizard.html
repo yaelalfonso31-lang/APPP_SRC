@@ -14,7 +14,8 @@
         <!-- Header -->
         <header class="encabezado-institucional">
             <span class="step-badge">Paso {{ pasoActual }}</span>
-            <h1>{{ obtenerTituloPaso() }}</h1>
+            <h1>{{ pasoActual === 1 ? 'Solicitud' : (pasoActual === 2 ? 'Política' : (pasoActual === 3 ? 'Pago' :
+                (pasoActual === 4 ? 'Comportamiento' : (pasoActual === 5 ? 'Recomendaciones' : '')))) }}</h1>
             <img src="assets/img/logo.jpg" alt="Logo Jardín Botánico BUAP" class="logo-institucional">
         </header>
 
