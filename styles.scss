@@ -1,0 +1,485 @@
+// ==========================================================================
+// VARIABLES DE COLOR INSTITUCIONALES (Unificadas)
+// ==========================================================================
+
+// Colores principales
+$primary-green: #8fba42;
+$secondary-green: #1b371f;
+$light-green: #c2d997;
+$accent-green: #1e8445;
+
+// Variables de estructura
+$text-dark: #2C3E50;
+$text-muted: #5D6D7E;
+$border-radius: 6px;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+$border-color: #D5DBDB;
+
+// ==========================================================================
+// RESET Y BASE
+// ==========================================================================
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    color: $text-dark;
+    min-height: 100vh;
+    background-color: #fbf5df;
+    background-repeat: repeat;
+    background-position: top left;
+    background-attachment: fixed;
+    background-size: 400px 400px;
+}
+
+// ==========================================================================
+// MIXINS
+// ==========================================================================
+
+@mixin border-style($color: $border-color, $width: 1px) {
+    border: $width solid $color;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $ease: ease) {
+    transition: $property $duration $ease;
+}
+
+// ==========================================================================
+// INDICADOR DE PROGRESO (PASOS) - Estilo Pestañas Escolares
+// ==========================================================================
+
+.progress-steps {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: white;
+    padding: 0;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    flex-wrap: wrap;
+    @include border-style;
+    overflow: hidden;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    color: #7f8c8d;
+    @include transition;
+    @include border-style($border-color);
+    border-right-width: 1px;
+    flex-grow: 1;
+    justify-content: center;
+
+    &:last-child {
+        border-right: none;
+    }
+
+    &.active {
+        background: white;
+        color: $primary-green;
+        border-bottom: 4px solid $primary-green;
+        font-weight: bold;
+    }
+
+    &.completed {
+        background: $light-green;
+        color: $accent-green;
+        border-bottom: 4px solid $secondary-green;
+    }
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #bdc3c7;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+
+    .step-item.active & {
+        background: $primary-green;
+    }
+
+    .step-item.completed & {
+        background: $secondary-green;
+    }
+}
+
+.step-label {
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+// ==========================================================================
+// RESPONSIVE - PROGRESS STEPS
+// ==========================================================================
+
+@media (max-width: 768px) {
+    .step-item {
+        padding: 0.8rem;
+        flex-basis: 33.33%;
+        border-bottom: 1px solid $border-color;
+    }
+
+    .step-label {
+        display: none;
+    }
+}
+
+// ==========================================================================
+// CONTENEDOR PRINCIPAL DEL FORMULARIO
+// ==========================================================================
+
+.form-container {
+    background: white;
+    border-radius: $border-radius;
+    @include border-style;
+    box-shadow: $box-shadow;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.form-content {
+    padding: 2.5rem 3rem;
+
+    @media (max-width: 768px) {
+        padding: 1.5rem;
+    }
+}
+
+// ==========================================================================
+// ENCABEZADO INSTITUCIONAL (Integrado y Uniforme)
+// ==========================================================================
+
+.encabezado-institucional {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: $light-green;
+    border-bottom: 2px solid $primary-green;
+    padding: 0;
+
+    .step-badge {
+        background-color: $secondary-green;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 90px;
+        line-height: 1;
+        text-align: center;
+        flex-shrink: 0;
+
+        &::before {
+            font-size: 0.85rem;
+            font-weight: normal;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    }
+
+    h1 {
+        color: $secondary-green;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0 120px 0 30px;
+        margin: 0;
+        flex-grow: 1;
+        letter-spacing: 0.5px;
+    }
+
+    .logo-institucional {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-height: 100px;
+        width: auto;
+    }
+}
+
+// ==========================================================================
+// RESPONSIVE - ENCABEZADO INSTITUCIONAL
+// ==========================================================================
+
+@media (max-width: 768px) {
+    .encabezado-institucional {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 20px;
+
+        .step-badge {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            flex-direction: row;
+            gap: 10px;
+
+            &::before {
+                margin-bottom: 0;
+            }
+        }
+
+        h1 {
+            padding: 20px 15px;
+            font-size: 1.1rem;
+        }
+
+        .logo-institucional {
+            position: relative;
+            right: auto;
+            transform: none;
+            margin-top: 10px;
+        }
+    }
+}
+
+// ==========================================================================
+// SECCIONES Y TARJETAS DEL FORMULARIO (Estilo Documento)
+// ==========================================================================
+
+.section-card {
+    background: white;
+    @include border-style;
+    border-top: 4px solid $primary-green;
+    border-radius: $border-radius;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #EAEDED;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    .step-badge {
+        background: $light-green;
+        color: $primary-green;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        border: 1px solid rgba(20, 90, 50, 0.2);
+    }
+}
+
+// ==========================================================================
+// TARJETAS DE SERVICIOS (Radio Cards Unificadas)
+// ==========================================================================
+
+.service-radio-card {
+    background-color: white;
+    @include border-style;
+    border-radius: $border-radius;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        border-color: $secondary-green;
+        background-color: #FAFCFC;
+    }
+}
+
+.service-radio-input:checked+.service-radio-card {
+    border-color: $primary-green;
+    border-width: 2px;
+    background-color: $light-green;
+
+    .unselected-icon {
+        display: none !important;
+    }
+
+    .selected-icon {
+        display: inline-block !important;
+    }
+}
+
+// ==========================================================================
+// ACORDEÓN (Más académico y limpio)
+// ==========================================================================
+
+.accordion-item {
+    @include border-style;
+    margin-bottom: 0.5rem;
+    border-radius: $border-radius !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-weight: 600;
+    background-color: #F8F9FA;
+    color: $text-dark;
+
+    &:not(.collapsed) {
+        background-color: $primary-green;
+        color: white;
+        box-shadow: none;
+
+        i {
+            color: white !important;
+        }
+    }
+
+    &:focus {
+        box-shadow: none;
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+// ==========================================================================
+// TARJETAS DE TÉRMINOS Y POLÍTICAS (Pasos 2, 4 y 5)
+// ==========================================================================
+
+.terms-card {
+    @include border-style;
+    border-left: 4px solid $primary-green !important;
+    border-top: none !important;
+    border-radius: 4px;
+    background-color: white !important;
+    @include transition(transform, 0.2s, ease);
+
+    &:hover {
+        transform: translateX(4px);
+        box-shadow: $box-shadow !important;
+    }
+}
+
+// ==========================================================================
+// INPUTS Y FORMULARIOS (Look de cuadernillo de trabajo)
+// ==========================================================================
+
+.form-label {
+    font-weight: 600;
+    color: $text-dark;
+    font-size: 0.95rem;
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    @include border-style;
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    background-color: #FDFEFE;
+}
+
+.input-group-text {
+    background-color: #F4F6F6;
+    color: $text-muted;
+}
+
+.form-control,
+.form-select {
+    &:focus {
+        border-color: $secondary-green;
+        box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+        background-color: white;
+    }
+}
+
+// ==========================================================================
+// BOTONES
+// ==========================================================================
+
+.btn-success {
+    background-color: $primary-green;
+    border-color: $primary-green;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+
+    &:hover {
+        background-color: #0E4325;
+        border-color: #0E4325;
+    }
+}
+
+.btn-outline-secondary {
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+// ==========================================================================
+// RESPONSIVE PARA IMÁGENES
+// ==========================================================================
+
+@media (max-width: 768px) {
+    .service-radio-card img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+// ==========================================================================
+// TEMA OSCURO (opcional - puedes eliminar si no lo necesitas)
+// ==========================================================================
+
+// [data-theme="dark"] {
+//     body {
+//         background-color: #1a1a2e;
+//         color: #e0e0e0;
+//     }
+//     
+//     // ... más estilos para tema oscuro
+// }
+
+// ==========================================================================
+// UTILITY CLASSES (opcionales)
+// ==========================================================================
+
+.text-primary-green {
+    color: $primary-green;
+}
+
+.text-secondary-green {
+    color: $secondary-green;
+}
+
+.bg-light-green {
+    background-color: $light-green;
+}
+
+.border-primary-green {
+    border-color: $primary-green;
+}

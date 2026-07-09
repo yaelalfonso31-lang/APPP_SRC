@@ -1,0 +1,119 @@
+<!-- Alertas de pago -->
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="alert alert-danger d-flex align-items-center border-0 shadow-sm h-100" role="alert">
+            <i class="bi bi-exclamation-triangle-fill fs-3 me-3"></i>
+            <div>
+                <strong>¡Importante!</strong> El pago debe efectuarse únicamente después de haber recibido la
+                <strong>confirmación</strong> de su servicio educativo por parte de nuestra área.
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-success d-flex align-items-center border-0 shadow-sm h-100" role="alert">
+            <i class="bi bi-clock-fill fs-3 me-3"></i>
+            <div>
+                <strong>Plazo límite:</strong> Para garantizar su acceso, el pago debe quedar registrado con al menos
+                <strong>dos días hábiles</strong> de anticipación a la fecha de su visita.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Formulario de reporte de pago -->
+<div class="section-card">
+    <div class="section-title">
+        <div class="d-flex align-items-center">
+            <span class="step-badge"><i class="bi bi-upload"></i></span>
+            <span class="ms-3">Adjuntar Comprobante de Pago</span>
+        </div>
+    </div>
+
+    <div class="mb-4 p-4 border rounded-3 bg-light">
+        <label for="comprobante" class="form-label fw-bold">
+            <i class="bi bi-cloud-arrow-up-fill me-2 text-primary"></i>Adjuntar Ficha de Depósito (50% de anticipo) *
+        </label>
+        <input type="file" class="form-control form-control-lg" id="comprobante" accept=".pdf,.jpg,.jpeg,.png">
+        <small class="text-muted mt-2 d-block"><i class="bi bi-info-circle me-1"></i>Formatos permitidos: PDF, JPG, PNG
+            (máx. 5MB)</small>
+    </div>
+
+    <fieldset>
+        <legend class="fw-bold text-secondary" style="font-size: 1.1rem;">Información que debe incluir en su reporte de
+            pago</legend>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label for="titular" class="form-label fw-semibold">
+                    <i class="bi bi-person-vcard me-1"></i>Nombre del titular/Institución *
+                </label>
+                <input type="text" class="form-control" id="titular" placeholder="Nombre completo o institución">
+            </div>
+            <div class="col-md-6">
+                <label for="monto" class="form-label fw-semibold">
+                    <i class="bi bi-currency-dollar me-1"></i>Monto a pagar *
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" id="monto" placeholder="350.00 MXN">
+                </div>
+                <small class="text-muted">Incluir moneda (ej. $350.00 MXN)</small>
+            </div>
+            <div class="col-12">
+                <label for="concepto" class="form-label fw-semibold">
+                    <i class="bi bi-tag me-1"></i>Concepto del pago *
+                </label>
+                <input type="text" class="form-control" id="concepto"
+                    placeholder="Ejemplo: 30 visitas guiadas - Grupo 3° Primaria">
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<!-- Ejemplos de comprobantes -->
+<div class="section-card">
+    <div class="section-title">
+        <div class="d-flex align-items-center">
+            <span class="step-badge"><i class="bi bi-images"></i></span>
+            <span class="ms-3">Ejemplos de comprobantes</span>
+        </div>
+    </div>
+
+    <p class="text-muted mb-3">Su comprobante debe verse como alguno de los siguientes ejemplos:</p>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="assets/img/FichaPago1.jpg" class="card-img-top rounded-top"
+                    alt="Ejemplo de ficha de depósito en sucursal" style="object-fit: cover; height: 850px;">
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">Ejemplo de ficha de depósito</h6>
+                    <p class="text-muted small mb-0">Depósito realizado en sucursal bancaria</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="assets/img/FichaPago2.jpg" class="card-img-top rounded-top"
+                    alt="Ejemplo de captura de transferencia digital" style="object-fit: cover; height: 950px;">
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">Ejemplo de transferencia electrónica</h6>
+                    <p class="text-muted small mb-0">Captura de pantalla de transferencia digital</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Envío de reporte -->
+<div class="alert alert-info d-flex align-items-start border-0 shadow-sm" role="alert"
+    style="background: linear-gradient(135deg, #d1ecf1, #bee5eb); border-left: 6px solid #0c5460 !important;">
+    <i class="bi bi-send-fill fs-3 me-3 text-primary"></i>
+    <div>
+        <h5 class="fw-bold mb-1">Envía tu reporte de pago</h5>
+        <p class="mb-0">Correo: <strong>jardinbotanico.cfdi&#64;correo.buap.mx</strong></p>
+        <p class="mb-0 mt-1">Su reserva quedará <strong>completamente confirmada</strong> una vez que se reciba esta
+            información.</p>
+        <p class="mb-0 text-danger fw-bold">Recuerde informar si requiere factura.</p>
+    </div>
+</div>

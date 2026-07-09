@@ -1,0 +1,60 @@
+<div class="container py-4">
+    <!-- Indicador de progreso -->
+    <div class="progress-steps mb-4">
+        @for (paso of pasos; track paso.numero) {
+        <div class="step-item" [class.completed]="isPasoCompletado(paso.numero)"
+            [class.active]="isPasoActivo(paso.numero)">
+            <span class="step-number">{{ paso.numero }}</span>
+            <span class="step-label">{{ paso.label }}</span>
+        </div>
+        }
+    </div>
+
+    <div class="form-container shadow-lg">
+        <!-- Header -->
+        <header class="encabezado-institucional">
+            <span class="step-badge">Paso {{ pasoActual }}</span>
+            <h1>{{ obtenerTituloPaso() }}</h1>
+            <img src="assets/img/logo.jpg" alt="Logo Jardín Botánico BUAP" class="logo-institucional">
+        </header>
+
+        <div class="form-content p-4 p-md-5">
+            <!-- Contenido de los pasos -->
+            <form [formGroup]="formSolicitud">
+                @switch (pasoActual) {
+                @case (1) {
+                <app-paso-solicitud [form]="formSolicitud"></app-paso-solicitud>
+                }
+                @case (2) {
+                <app-paso-politica></app-paso-politica>
+                }
+                @case (3) {
+                <app-paso-pago></app-paso-pago>
+                }
+                @case (4) {
+                <app-paso-comportamiento></app-paso-comportamiento>
+                }
+                @case (5) {
+                <app-paso-recomendaciones></app-paso-recomendaciones>
+                }
+                }
+            </form>
+
+            <!-- Navegación entre pasos -->
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4" [disabled]="pasoActual === 1"
+                    (click)="pasoAnterior()">
+                    <i class="bi bi-arrow-left me-2"></i> Anterior
+                </button>
+                <button type="button" class="btn btn-success btn-lg px-5" *ngIf="pasoActual < 5"
+                    (click)="pasoSiguiente()">
+                    Siguiente <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-lg px-5" *ngIf="pasoActual === 5"
+                    (click)="cambiarPaso(1)">
+                    <i class="bi bi-house-fill me-2"></i> Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
