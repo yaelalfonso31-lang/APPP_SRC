@@ -42,19 +42,25 @@
             </form>
 
             <!-- Navegación entre pasos -->
+            <!-- Navegación entre pasos -->
             <div class="d-flex justify-content-between mt-4">
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4" [disabled]="pasoActual === 1"
                     (click)="pasoAnterior()">
                     <i class="bi bi-arrow-left me-2"></i> Anterior
                 </button>
-                <button type="button" class="btn btn-success btn-lg px-5" *ngIf="pasoActual < 5"
+
+                <!-- Usando el nuevo @if de Angular -->
+                @if (pasoActual < 5) { <button type="button" class="btn btn-success btn-lg px-5"
                     (click)="pasoSiguiente()">
-                    Siguiente <i class="bi bi-arrow-right ms-2"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-lg px-5" *ngIf="pasoActual === 5"
-                    (click)="cambiarPaso(1)">
-                    <i class="bi bi-house-fill me-2"></i> Volver al Inicio
-                </button>
+                    </button>
+                    }
+
+                    <!-- Usando el nuevo @if de Angular -->
+                    @if (pasoActual === 5) {
+                    <button type="button" class="btn btn-success btn-lg px-5" (click)="pasoActual = 1">
+                        <i class="bi bi-house-fill me-2"></i> Volver al Inicio
+                    </button>
+                    }
             </div>
         </div>
     </div>

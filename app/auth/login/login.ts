@@ -63,6 +63,6 @@ export class Login {
   }
 
   irAlFormulario(): void {
-    this.router.navigate(['/auth/reserva-visita']);
+    this.router.navigate(['/reserva-visita']);
   }
 }

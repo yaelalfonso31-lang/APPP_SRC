@@ -7,7 +7,7 @@ import { FormularioVisitaService } from '../formulario-visita';
 @Component({
   selector: 'app-paso-solicitud',
   templateUrl: './paso-solicitud.html',
-  styleUrls: ['./paso-solicitud.css'],
+  styleUrls: ['./paso-solicitud.scss'],
   imports: [
     // 3. Declarar las importaciones aquí
     ReactiveFormsModule,
