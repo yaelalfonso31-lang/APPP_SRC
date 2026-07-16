@@ -1,5 +1,29 @@
 // ==========================================================================
-// VARIABLES DE COLOR INSTITUCIONALES (Unificadas)
+// 1. CONFIGURACIÓN DE ANGULAR MATERIAL (@use siempre debe ir primero)
+// ==========================================================================
+@use '@angular/material' as mat;
+
+html {
+    @include mat.theme((color: (primary: mat.$azure-palette,
+                tertiary: mat.$blue-palette,
+            ),
+            typography: Roboto,
+            density: 0,
+        ));
+    height: 100%;
+}
+
+body {
+    color-scheme: light;
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+    font: var(--mat-sys-body-medium);
+    margin: 0;
+    height: 100%;
+}
+
+// ==========================================================================
+// 2. VARIABLES DE COLOR INSTITUCIONALES (Unificadas)
 // ==========================================================================
 
 // Colores principales
@@ -16,7 +40,7 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 $border-color: #D5DBDB;
 
 // ==========================================================================
-// RESET Y BASE
+// 3. RESET Y BASE PERSONALIZADA
 // ==========================================================================
 
 * {
@@ -37,7 +61,7 @@ body {
 }
 
 // ==========================================================================
-// MIXINS
+// 4. MIXINS
 // ==========================================================================
 
 @mixin border-style($color: $border-color, $width: 1px) {
@@ -55,7 +79,7 @@ body {
 }
 
 // ==========================================================================
-// INDICADOR DE PROGRESO (PASOS) - Estilo Pestañas Escolares
+// 5. INDICADOR DE PROGRESO (PASOS) - Estilo Pestañas Escolares
 // ==========================================================================
 
 .progress-steps {
@@ -128,10 +152,6 @@ body {
     white-space: nowrap;
 }
 
-// ==========================================================================
-// RESPONSIVE - PROGRESS STEPS
-// ==========================================================================
-
 @media (max-width: 768px) {
     .step-item {
         padding: 0.8rem;
@@ -145,7 +165,7 @@ body {
 }
 
 // ==========================================================================
-// CONTENEDOR PRINCIPAL DEL FORMULARIO
+// 6. CONTENEDOR PRINCIPAL DEL FORMULARIO
 // ==========================================================================
 
 .form-container {
@@ -168,7 +188,7 @@ body {
 }
 
 // ==========================================================================
-// ENCABEZADO INSTITUCIONAL (Integrado y Uniforme)
+// 7. ENCABEZADO INSTITUCIONAL
 // ==========================================================================
 
 .encabezado-institucional {
@@ -224,10 +244,6 @@ body {
     }
 }
 
-// ==========================================================================
-// RESPONSIVE - ENCABEZADO INSTITUCIONAL
-// ==========================================================================
-
 @media (max-width: 768px) {
     .encabezado-institucional {
         flex-direction: column;
@@ -261,7 +277,7 @@ body {
 }
 
 // ==========================================================================
-// SECCIONES Y TARJETAS DEL FORMULARIO (Estilo Documento)
+// 8. SECCIONES Y TARJETAS DEL FORMULARIO
 // ==========================================================================
 
 .section-card {
@@ -299,7 +315,7 @@ body {
 }
 
 // ==========================================================================
-// TARJETAS DE SERVICIOS (Radio Cards Unificadas)
+// 9. TARJETAS DE SERVICIOS
 // ==========================================================================
 
 .service-radio-card {
@@ -330,7 +346,7 @@ body {
 }
 
 // ==========================================================================
-// ACORDEÓN (Más académico y limpio)
+// 10. ACORDEÓN
 // ==========================================================================
 
 .accordion-item {
@@ -362,7 +378,7 @@ body {
 }
 
 // ==========================================================================
-// TARJETAS DE TÉRMINOS Y POLÍTICAS (Pasos 2, 4 y 5)
+// 11. TARJETAS DE TÉRMINOS Y POLÍTICAS
 // ==========================================================================
 
 .terms-card {
@@ -380,7 +396,7 @@ body {
 }
 
 // ==========================================================================
-// INPUTS Y FORMULARIOS (Look de cuadernillo de trabajo)
+// 12. INPUTS Y FORMULARIOS
 // ==========================================================================
 
 .form-label {
@@ -413,7 +429,7 @@ body {
 }
 
 // ==========================================================================
-// BOTONES
+// 13. BOTONES
 // ==========================================================================
 
 .btn-success {
@@ -439,7 +455,7 @@ body {
 }
 
 // ==========================================================================
-// RESPONSIVE PARA IMÁGENES
+// 14. RESPONSIVE PARA IMÁGENES
 // ==========================================================================
 
 @media (max-width: 768px) {
@@ -452,20 +468,7 @@ body {
 }
 
 // ==========================================================================
-// TEMA OSCURO (opcional - puedes eliminar si no lo necesitas)
-// ==========================================================================
-
-// [data-theme="dark"] {
-//     body {
-//         background-color: #1a1a2e;
-//         color: #e0e0e0;
-//     }
-//     
-//     // ... más estilos para tema oscuro
-// }
-
-// ==========================================================================
-// UTILITY CLASSES (opcionales)
+// 15. UTILITY CLASSES
 // ==========================================================================
 
 .text-primary-green {

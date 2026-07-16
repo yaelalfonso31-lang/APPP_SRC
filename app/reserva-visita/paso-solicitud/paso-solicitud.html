@@ -1,5 +1,5 @@
 <!-- Sección: Datos de la Institución -->
-<div class="section-card">
+<div class="section-card" formGroupName="institucion">
     <div class="section-title">
         <div class="d-flex align-items-center">
             <span class="step-badge"><i class="bi bi-building"></i></span>
@@ -16,7 +16,7 @@
             <input type="text" class="form-control" id="escuela" formControlName="escuela"
                 placeholder="Ej. Preparatoria Benemérita">
         </div>
-        @if (form.get('escuela')?.touched && form.get('escuela')?.invalid) {
+        @if (form.get('institucion.escuela')?.touched && form.get('institucion.escuela')?.invalid) {
         <div class="text-danger small mt-1">Este campo es obligatorio</div>
         }
     </div>
@@ -54,7 +54,7 @@
 </div>
 
 <!-- Sección: Información de Contacto y Nivel -->
-<div class="section-card">
+<div class="section-card" formGroupName="contacto">
     <div class="section-title">
         <div class="d-flex align-items-center">
             <span class="step-badge"><i class="bi bi-person-lines-fill"></i></span>
@@ -67,8 +67,8 @@
             <label class="form-label text-muted fw-semibold">
                 <i class="bi bi-person-badge me-1"></i> Profesor(es) Responsable(s) *
             </label>
-            <div id="profesores-container">
-                @for (profesor of getProfesores().controls; track i; let i = $index) {
+            <div id="profesores-container" formArrayName="profesores">
+                @for (profesor of getProfesores().controls; track $index; let i = $index) {
                 <div class="input-group mb-2 shadow-sm">
                     <span class="input-group-text bg-light text-success"><i class="bi bi-person"></i></span>
                     <input type="text" class="form-control" [formControlName]="i" placeholder="Nombre completo">
@@ -91,8 +91,8 @@
             <label class="form-label text-muted fw-semibold">
                 <i class="bi bi-telephone me-1"></i> Teléfono(s) de Contacto *
             </label>
-            <div id="telefonos-container">
-                @for (telefono of getTelefonos().controls; track i; let i = $index) {
+            <div id="telefonos-container" formArrayName="telefonos">
+                @for (telefono of getTelefonos().controls; track $index; let i = $index) {
                 <div class="input-group mb-2 shadow-sm">
                     <span class="input-group-text bg-light text-success"><i class="bi bi-phone"></i></span>
                     <input type="tel" class="form-control" [formControlName]="i" placeholder="10 dígitos">
@@ -115,8 +115,8 @@
             <label class="form-label text-muted fw-semibold">
                 <i class="bi bi-envelope-at me-1"></i> Correo(s) Electrónico(s) *
             </label>
-            <div id="correos-container">
-                @for (correo of getCorreos().controls; track i; let i = $index) {
+            <div id="correos-container" formArrayName="correos">
+                @for (correo of getCorreos().controls; track $index; let i = $index) {
                 <div class="input-group mb-2 shadow-sm">
                     <span class="input-group-text bg-light text-success"><i class="bi bi-envelope"></i></span>
                     <input type="email" class="form-control" [formControlName]="i" placeholder="ejemplo@correo.com">
@@ -159,7 +159,7 @@
 </div>
 
 <!-- Sección: Detalles del Servicio -->
-<div class="section-card">
+<div class="section-card" formGroupName="detalles">
     <div class="section-title">
         <div class="d-flex align-items-center">
             <span class="step-badge"><i class="bi bi-calendar-event"></i></span>

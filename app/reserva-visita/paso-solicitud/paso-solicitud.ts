@@ -27,10 +27,10 @@ export class PasoSolicitudComponent implements OnChanges {
       }, 0);
 
       // Suscribirse a cambios para recalcular totales
-      this.form.get('num_grupos')?.valueChanges.subscribe(() => this.calcularTotales());
-      this.form.get('estudiantes_grupo')?.valueChanges.subscribe(() => this.calcularTotales());
-      this.form.get('num_padres')?.valueChanges.subscribe(() => this.calcularTotales());
-      this.form.get('servicio')?.valueChanges.subscribe(() => this.calcularTotales());
+      this.form.get('detalles.num_grupos')?.valueChanges.subscribe(() => this.calcularTotales());
+      this.form.get('detalles.estudiantes_grupo')?.valueChanges.subscribe(() => this.calcularTotales());
+      this.form.get('detalles.num_padres')?.valueChanges.subscribe(() => this.calcularTotales());
+      this.form.get('detalles.servicio')?.valueChanges.subscribe(() => this.calcularTotales());
     }
   }
 
@@ -78,30 +78,17 @@ export class PasoSolicitudComponent implements OnChanges {
   calcularTotales(): void {
     if (this.form) {
       const totales = this.formularioService.calcularTotales(this.form);
-      this.form.patchValue({
+      this.form.get('detalles')?.patchValue({
         total_estudiantes: totales.totalEstudiantes,
-        monto_total: totales.montoTotal,
-        monto_anticipo: totales.montoAnticipo
+        monto_total: `$${totales.montoTotal.toFixed(2)} MXN`,
+        monto_anticipo: `$${totales.montoAnticipo.toFixed(2)} MXN`
       });
     }
   }
 
   getPrecioServicio(): number {
-    const servicio = this.form?.get('servicio')?.value;
-    const precios: { [key: string]: number } = {
-      visita_guiada: 30,
-      visita_tematica: 99,
-      conociendo_medio_ambiente: 125,
-      crea_herbario: 125,
-      fosiles_plantas: 99,
-      detective_botanico: 99,
-      horticultura: 125,
-      insectos: 99,
-      lombricomposta: 125,
-      terrarios: 145,
-      colecta_plantas: 190,
-      plantas_medicinales: 190
-    };
+    const servicio = this.form?.get('detalles.servicio')?.value;
+    const precios = this.formularioService.obtenerPrecios();
     return precios[servicio] || 0;
   }
 

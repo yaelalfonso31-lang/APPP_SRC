@@ -31,12 +31,7 @@ export class ContenedorWizardComponent {
   formSolicitud: FormGroup;
 
   constructor(private formularioService: FormularioVisitaService) {
-    if ('crearFormularioSolicitud' in this.formularioService &&
-      typeof (this.formularioService as any).crearFormularioSolicitud === 'function') {
-      this.formSolicitud = (this.formularioService as any).crearFormularioSolicitud();
-    } else {
-      this.formSolicitud = new FormGroup({});
-    }
+    this.formSolicitud = this.formularioService.visitaForm;
   }
 
   cambiarPaso(paso: number): void {

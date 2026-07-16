@@ -48,7 +48,11 @@ export class FormularioVisitaService {
         estudiantes_grupo: [20, [Validators.required, Validators.min(10), Validators.max(60)]],
         num_maestros: [2, [Validators.required, Validators.min(0)]],
         num_padres: [0, [Validators.required, Validators.min(0)]],
-        lunch: ['', Validators.required]
+        lunch: ['', Validators.required],
+        // Campos calculados/de solo lectura (el template los usa con formControlName)
+        total_estudiantes: [{ value: 0, disabled: true }],
+        monto_total: [{ value: '$0.00 MXN', disabled: true }],
+        monto_anticipo: [{ value: '$0.00 MXN', disabled: true }]
       }),
 
       // ==========================================
@@ -69,17 +73,17 @@ export class FormularioVisitaService {
   // GETTERS Y MÉTODOS PARA CAMPOS DINÁMICOS
   // ==========================================
 
-  // Getters para FormArrays
+  // Getters para FormArrays (viven dentro del grupo 'contacto')
   getProfesores(form: FormGroup): FormArray {
-    return form.get('profesores') as FormArray;
+    return form.get('contacto.profesores') as FormArray;
   }
 
   getTelefonos(form: FormGroup): FormArray {
-    return form.get('telefonos') as FormArray;
+    return form.get('contacto.telefonos') as FormArray;
   }
 
   getCorreos(form: FormGroup): FormArray {
-    return form.get('correos') as FormArray;
+    return form.get('contacto.correos') as FormArray;
   }
 
   agregarCampo(array: FormArray): void {
@@ -94,16 +98,20 @@ export class FormularioVisitaService {
 
   // Calcular totales
   calcularTotales(form: FormGroup): { totalEstudiantes: number; montoTotal: number; montoAnticipo: number } {
-    const numGrupos = form.get('num_grupos')?.value || 1;
-    const estudiantesPorGrupo = form.get('estudiantes_grupo')?.value || 0;
-    const padres = form.get('num_padres')?.value || 0;
-    const totalEstudiantes = (numGrupos * estudiantesPorGrupo) + padres;
+    const numGrupos = form.get('detalles.num_grupos')?.value || 1;
+    const estudiantesPorGrupo = form.get('detalles.estudiantes_grupo')?.value || 0;
+    const padres = form.get('detalles.num_padres')?.value || 0;
+
+    // Total de alumnos (sin padres); los maestros acompañantes no pagan
+    const totalEstudiantes = numGrupos * estudiantesPorGrupo;
+    // Total de pagantes = alumnos + padres
+    const totalPagantes = totalEstudiantes + padres;
 
     // Obtener precio del servicio seleccionado
-    const servicio = form.get('servicio')?.value;
+    const servicio = form.get('detalles.servicio')?.value;
     const precios = this.obtenerPrecios();
     const precioUnitario = precios[servicio] || 0;
-    const montoTotal = totalEstudiantes * precioUnitario;
+    const montoTotal = totalPagantes * precioUnitario;
 
     return {
       totalEstudiantes,
@@ -112,7 +120,7 @@ export class FormularioVisitaService {
     };
   }
 
-  private obtenerPrecios(): { [key: string]: number } {
+  obtenerPrecios(): { [key: string]: number } {
     return {
       visita_guiada: 30,
       visita_tematica: 99,
